@@ -1,5 +1,7 @@
 # ESP32-C3 光センサー・人感センサー電子工作キット
 
+![キットのイメージ](docs/IMG_20261026_000513425~2.jpg)
+
 ESP32-C3 SuperMiniを使い、周囲が暗いときにLEDを点灯し、人の動きを検知するとパッシブブザーを短く鳴らす電子工作サンプルです。
 
 ## 動作
@@ -26,6 +28,8 @@ ESP32-C3 SuperMiniを使い、周囲が暗いときにLEDを点灯し、人の�
 
 ## 配線
 
+![配線図](docs/スクリーンショット%202026-10-25%20232853.png)
+
 ピン番号はESP32-C3 SuperMiniのGPIO番号です。基板の端子表記と照らし合わせて接続してください。
 
 | 部品・接続点 | 接続先 |
@@ -36,19 +40,20 @@ ESP32-C3 SuperMiniを使い、周囲が暗いときにLEDを点灯し、人の�
 | CDSセルのもう片側 | GPIO0と10kΩ抵抗の接続点 |
 | 10kΩ抵抗の反対側 | GND |
 | PIRのOUT | GPIO3 |
-| PIRのVCC | 使用するHW-740モジュールの仕様に合った電源 |
+| PIRのVCC | 3.3V |
 | PIRのGND | GND |
 | パッシブブザーの＋ | GPIO5 |
 | パッシブブザーの− | GND |
 
 CDSセルと10kΩ抵抗は分圧回路を構成します。サンプルコードのしきい値は、実際のセンサーや配線によって調整が必要です。
 
-## ソフトウェア
+## 開発環境
 
-- Arduino IDE
-- ESP32 Arduino Core **3.x系を想定**（`ledcAttach()` APIを使用）
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [PlatformIO IDE](https://platformio.org/install/ide?install=vscode)
+- PlatformIOのESP32-C3対応環境
 
-`src/main.ino` をArduino IDEで開き、ESP32-C3 SuperMiniに書き込んでください。ボード設定や書き込み方法は、使用しているArduino IDE・ESP32 Coreのバージョンに合わせてください。
+リポジトリをPlatformIOプロジェクトとして開き、ビルド・書き込みを行ってください。`platformio.ini` にボードやフレームワークなどの設定を記載します。
 
 ## 調整項目
 
@@ -63,7 +68,7 @@ CDSセルと10kΩ抵抗は分圧回路を構成します。サンプルコード
 
 ## 注意事項
 
-- **HW-740の電源電圧は、手元のモジュールの仕様を確認してから接続してください。** 本資料では電源電圧を一律に指定していません。
+- HW-740は今回の構成で3.3V給電にて動作確認しています。
 - ESP32-C3のGPIOは3.3V系です。GPIOへ5Vを入力しないでください。
 - LEDには電流制限抵抗を直列に接続してください。
 - 本サンプルは学習用です。防犯・安全装置として使用しないでください。
@@ -71,6 +76,7 @@ CDSセルと10kΩ抵抗は分圧回路を構成します。サンプルコード
 
 ## ファイル構成
 
-- `src/main.ino`：サンプルコード
+- `src/main.cpp`：PlatformIO用サンプルコード
+- `platformio.ini`：PlatformIOのプロジェクト設定（ボード設定は使用基板に応じて確認）
 - `docs/wiring.md`：配線表
 - `docs/parts.md`：部品表
