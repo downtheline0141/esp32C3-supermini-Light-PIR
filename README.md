@@ -5,7 +5,7 @@
 ESP32-C3 SuperMiniを使い、周囲が暗いときにLEDを点灯し、人の動きを検知するとパッシブブザーを短く鳴らす電子工作サンプルです。
 
 動作の様子
-(https://youtube.com/shorts/nYl-evW8x4g)
+https://youtube.com/shorts/nYl-evW8x4g
 
 ## 動作
 
